@@ -1,9 +1,8 @@
-# TRIBAL TEST
+# TRIBAL TEST - Doc
 
-# Documentación API TEST
+# backend API
 **Framework:**
 `"laravel/framework": "^8.12"`
-
 **Requiere:**
 `"php": "^7.3|^8.0"`
 
@@ -23,8 +22,7 @@ La api solo posee un **endpoint** el cual es de tipo **GET** y recibe un paráme
 Donde **adan** es el  parámetro y/o texto a buscar
 
 
-# Documentación WEB TEST
-
+# Frontend
 **Framework:**
 `Angular: 10.2.3`
 
