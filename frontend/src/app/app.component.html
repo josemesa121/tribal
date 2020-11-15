@@ -1,0 +1,96 @@
+
+<section class="hero is-primary is-fullheight">
+
+
+  <div class="hero-body">
+
+    <div class="container has-text-centered">
+      <h1 class="title">
+        My Search
+      </h1>
+      <h2 class="subtitle">
+        Busca personas, peliculas, música y shows de TV.
+      </h2>
+
+      <div class="field has-addons has-addons-centered">
+        <div class="control">
+          <input class="input is-rounded" name="nSearchText" [(ngModel)]="searchText" type="text" placeholder="Buscar">
+        </div>
+        <div class="control">
+          <button id="search-button" [disabled]="loading || searchText==''" (click)="search()" class="button is-rounded is-primary is-light">
+            <span *ngIf="!loading"><i class="fa fa-search"></i>&nbsp;Buscar</span>
+            <span *ngIf="loading"><i class="fa fa-search fa-spin"></i>&nbsp;</span>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="data">
+        <div class="columns my-4">
+          <div id="tab-section" class="column is-centered">
+            <a (click)="tabStatus='people'" class="mx-3" [ngClass]="{'active': tabStatus=='people'}">
+              <span class="icon is-small"><i class="fa fa-users" aria-hidden="true"></i></span>
+              <span class="mx-1">Personas</span>
+              <span *ngIf="data.crcind.people.length>0" class="tag is-primary is-light">{{data.crcind.people.length}}</span>
+            </a>
+
+            <a (click)="tabStatus='musics'" class="mx-3" [ngClass]="{'active': tabStatus=='musics'}">
+              <span class="icon is-small"><i class="fa fa-music" aria-hidden="true"></i></span>
+              <span class="mx-1"an>Música</span>
+              <span *ngIf="data.itunes.musics.length>0" class="tag is-primary is-light">{{data.itunes.musics.length}}</span>
+            </a>
+
+            <a (click)="tabStatus='movies'" class="mx-3" [ngClass]="{'active': tabStatus=='movies'}">
+              <span class="icon is-small"><i class="fa fa-film" aria-hidden="true"></i></span>
+              <span class="mx-1">Peliculas</span>
+              <span *ngIf="data.itunes.movies.length" class="tag is-primary is-light">{{data.itunes.movies.length}}</span>
+            </a>
+
+            <a (click)="tabStatus='shows'" class="mx-3" [ngClass]="{'active': tabStatus=='shows'}">
+              <span class="icon is-small"><i class="fa fa-tv" aria-hidden="true"></i></span>
+              <span class="mx-1">Shows Tv</span>
+              <span *ngIf="data.tvmaze.shows.length" class="tag is-primary is-light">{{data.tvmaze.shows.length}}</span>
+            </a>
+          </div>
+        </div>
+
+        <div *ngIf="tabStatus!=''" class="columns py-5">
+          <div class="card column is-10 is-offset-1" style="box-shadow: none;">
+            <div class="card-content">
+              <div class="content" *ngIf="tabStatus=='people'">
+                <app-search-item *ngFor="let x of data.crcind.people" [id]="x.ID" [name]="x.Name" [service]="'crcind'"></app-search-item>
+                <p *ngIf="data.crcind.people.length==0" class="has-text-grey-light">Sin coincidencias.</p>
+              </div>
+
+              <div class="content" *ngIf="tabStatus=='musics'">
+                <app-search-item *ngFor="let x of data.itunes.musics" [id]="x.trackId" [name]="x.trackName" [service]="'itunes'"></app-search-item>
+                <p *ngIf="data.itunes.musics.length==0" class="has-text-grey-light">Sin coincidencias.</p>
+              </div>
+
+              <div class="content" *ngIf="tabStatus=='movies'">
+                <app-search-item *ngFor="let x of data.itunes.movies" [id]="x.trackId" [name]="x.trackName" [service]="'itunes'"></app-search-item>
+                <p *ngIf="data.itunes.movies.length==0" class="has-text-grey-light">Sin coincidencias.</p>
+              </div>
+
+              <div class="content" *ngIf="tabStatus=='shows'">
+                <app-search-item *ngFor="let x of data.tvmaze.shows" [id]="x.show.id" [name]="x.show.name" [service]="'tvmaze'"></app-search-item>
+                <p *ngIf="data.tvmaze.shows.length==0" class="has-text-grey-light">Sin coincidencias.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="hero-foot py-5">
+    <nav class="tabs">
+      <div class="container has-text-centered">
+        <p>Hecho con <span class="has-text-danger"><i class="fa fa-heart"></i></span> por <span class="has-text-dark">José Mesa</span></p>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<router-outlet></router-outlet>

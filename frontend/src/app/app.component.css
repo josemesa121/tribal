@@ -1,0 +1,25 @@
+#search-button {
+    box-shadow: -1px 2px -9px #999;
+    -webkit-box-shadow: -1px 2px 9px #999;
+    -moz-box-shadow: -1px 2px 9px #999;
+}
+
+#search-button i {
+    transition: all 0.4s;
+}
+
+#search-button:hover i {
+    transform: rotate(360deg);
+}
+
+#tab-section a{
+    color: white;
+}
+
+#tab-section a:hover{
+    color: #75E8D7;
+}
+
+#tab-section .active{
+    color: #75E8D7; 
+}
